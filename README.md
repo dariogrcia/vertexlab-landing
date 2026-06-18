@@ -42,6 +42,7 @@ vertexlab-landing/
 ├── package.json
 ├── vite.config.ts             # Config de Vite (base: /vertexlab-landing/)
 ├── tsconfig.json
+├── .github/workflows/deploy.yml   # CI: build + deploy automático a GitHub Pages
 └── src/
     ├── main.tsx               # Punto de entrada (monta <App/>)
     ├── App.tsx                # Composición de secciones + animaciones GSAP
@@ -142,19 +143,15 @@ Edita las variables CSS en el bloque `:root` al inicio de `src/index.css`.
 
 URL en producción: **https://dariogrcia.github.io/vertexlab-landing/**
 
-La web se publica en GitHub Pages desde la rama `gh-pages`, que contiene el resultado de
-`npm run build`. Para publicar una nueva versión tras hacer cambios:
+El despliegue es **automático** vía GitHub Actions (`.github/workflows/deploy.yml`): con cada
+push a `main`, el workflow ejecuta `npm ci` + `npm run build` y publica el contenido de `dist/`
+en GitHub Pages. No hay que hacer nada manual.
 
-```bash
-npm run build
-cd dist && touch .nojekyll
-git init && git add -A && git commit -m "deploy"
-git push -f https://github.com/dariogrcia/vertexlab-landing.git HEAD:gh-pages
+```
+git push a main  →  GitHub Actions (build)  →  GitHub Pages (deploy)
 ```
 
-> **Despliegue automático (opcional):** se puede añadir un workflow de GitHub Actions que
-> compile y despliegue con cada push a `main`. Requiere que el token de `gh` tenga el scope
-> `workflow` (`gh auth refresh -h github.com -s workflow`).
+> En `Settings > Pages`, la fuente debe estar configurada como **GitHub Actions**.
 
 Para desplegar en otra plataforma (Netlify, Vercel, etc.) basta con ejecutar
 `npm run build` y servir el contenido de `./dist`.
