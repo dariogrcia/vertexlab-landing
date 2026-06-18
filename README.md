@@ -2,41 +2,35 @@
 
 Landing page de una sola página para **VertexLab**, un estudio de dos desarrolladores que ofrece servicios de desarrollo web, CRM a medida y hosting gestionado.
 
+Proyecto **React + Vite + TypeScript**. Las animaciones se gestionan con **GSAP** (ScrollTrigger).
+
+---
+
+## Requisitos
+
+- [Node.js](https://nodejs.org/) 20 o superior
+- npm (incluido con Node)
+
 ---
 
 ## Cómo levantar el proyecto
 
-Es un archivo HTML autocontenido — no necesita servidor, build tools, ni dependencias instaladas.
-
-### Opción 1 — Abrir directamente en el navegador
-
 ```bash
-open vertexlab.html          # macOS
-start vertexlab.html         # Windows
-xdg-open vertexlab.html      # Linux
+# 1. Instala las dependencias
+npm install
+
+# 2. Servidor de desarrollo (recarga en caliente)
+npm run dev
 ```
 
-### Opción 2 — Servidor local (recomendado para desarrollo)
+Abre la URL que muestra la terminal (por defecto `http://localhost:5173/vertexlab-landing/`).
 
-Con Python (disponible en cualquier sistema):
-
-```bash
-# Python 3
-python3 -m http.server 8080
-
-# Python 2
-python -m SimpleHTTPServer 8080
-```
-
-Luego abre `http://localhost:8080/vertexlab.html` en el navegador.
-
-Con Node.js:
+### Otros comandos
 
 ```bash
-npx serve .
+npm run build     # Compila a producción en ./dist
+npm run preview   # Sirve localmente el build de ./dist
 ```
-
-Con VS Code: instala la extensión **Live Server** y haz clic en "Go Live".
 
 ---
 
@@ -44,10 +38,25 @@ Con VS Code: instala la extensión **Live Server** y haz clic en "Go Live".
 
 ```
 vertexlab-landing/
-└── vertexlab.html   # Todo el proyecto en un único archivo
+├── index.html                 # Shell de Vite (monta la app en #root)
+├── package.json
+├── vite.config.ts             # Config de Vite (base: /vertexlab-landing/)
+├── tsconfig.json
+└── src/
+    ├── main.tsx               # Punto de entrada (monta <App/>)
+    ├── App.tsx                # Composición de secciones + animaciones GSAP
+    ├── index.css              # Todos los estilos (variables, layout, animaciones)
+    └── components/
+        ├── Nav.tsx            # Navegación + menú móvil (estado React)
+        ├── Hero.tsx           # Hero + terminal animada
+        ├── Services.tsx       # Tarjetas de servicios
+        ├── About.tsx          # Perfiles de los desarrolladores
+        ├── TechStack.tsx      # Badges del stack tecnológico
+        ├── Process.tsx        # Pasos del proceso de trabajo
+        ├── Testimonials.tsx   # Testimonios de clientes
+        ├── Contact.tsx        # Bloque de contacto / CTA
+        └── Footer.tsx         # Pie de página
 ```
-
-El archivo sigue el patrón **single-file HTML discipline**: todo el CSS está dentro de `<style>` y todo el JavaScript dentro de `<script>`, sin ficheros externos salvo dos dependencias CDN.
 
 ---
 
@@ -57,21 +66,24 @@ El archivo sigue el patrón **single-file HTML discipline**: todo el CSS está d
 
 | Capa | Tecnología |
 |---|---|
-| Markup | HTML5 semántico |
-| Estilos | CSS3 — variables, grid, flexbox, keyframes |
-| Animaciones | [GSAP 3.12](https://greensock.com/gsap/) + ScrollTrigger (CDN) |
-| Tipografía | [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) + [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts) |
+| Framework | [React 18](https://react.dev/) |
+| Build tool | [Vite 5](https://vite.dev/) |
+| Lenguaje | [TypeScript](https://www.typescriptlang.org/) |
+| Estilos | CSS3 (variables, grid, flexbox, keyframes) en `src/index.css` |
+| Animaciones | [GSAP 3](https://gsap.com/) + ScrollTrigger (paquete npm) |
+| Tipografía | [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) + [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts, cargadas desde `index.html`) |
 
-### Dependencias externas (solo CDN, sin instalación)
+### Notas de arquitectura
 
-```html
-<!-- Tipografía -->
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- Animaciones -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-```
+- **CSS global** — Todos los estilos viven en `src/index.css` con la misma cascada que la
+  versión original de un solo archivo, para garantizar un aspecto idéntico.
+- **Animaciones** — `App.tsx` ejecuta toda la lógica GSAP dentro de un `useLayoutEffect`
+  (se ejecuta antes del primer pintado → evita el FOUC, igual que el `<script>` original).
+  El parallax del ratón se engancha al `.hero`. Los reveals usan `ScrollTrigger.batch`.
+- **Terminal animada** — `Hero.tsx` reproduce el efecto de tipeo línea a línea con un
+  `useEffect` y un `ref`.
+- **Menú móvil** — `Nav.tsx` gestiona el estado de apertura con `useState` (en vez de
+  manipular clases del DOM).
 
 ### Paleta de colores (dark mode)
 
@@ -86,32 +98,16 @@ El archivo sigue el patrón **single-file HTML discipline**: todo el CSS está d
 
 ### Secciones
 
-| # | ID | Descripción |
-|---|---|---|
-| 1 | `#hero` | Hero full-height con terminal animada y parallax de ratón |
-| 2 | `#servicios` | 3 tarjetas de servicio con hover glow |
-| 3 | `#nosotros` | Perfil de los 2 desarrolladores |
-| 4 | `#stack` | Badges del stack tecnológico |
-| 5 | `#proceso` | 4 pasos del proceso de trabajo |
-| 6 | `#contacto` | Bloque CTA con email y teléfono |
-| — | `footer` | Logo, enlaces y copyright |
-
-### Animaciones implementadas
-
-- **Hero entrance** — timeline GSAP con stagger encadenado (fade + translateY)
-- **Mouse parallax** — 3 capas de profundidad que responden al movimiento del cursor
-- **Terminal typing** — animación de escritura línea a línea con delays variables
-- **ScrollTrigger** — reveal de tarjetas, steps y badges al entrar en viewport
-- **CSS keyframes** — formas flotantes en el fondo (sin coste de JS)
-- **Cursor parpadeante** — CSS `step-end` en el terminal al finalizar la escritura
-
-### Responsive
-
-| Breakpoint | Cambios |
-|---|---|
-| `> 900px` | Layout completo: hero 2 columnas, servicios 3 col |
-| `≤ 900px` | Hero 1 columna, servicios 2 col, nav colapsado a hamburger |
-| `≤ 580px` | Todo en 1 columna, tipografía reducida |
+| # | ID | Componente | Descripción |
+|---|---|---|---|
+| 1 | `#hero` | `Hero` | Hero full-height con terminal animada y parallax de ratón |
+| 2 | `#servicios` | `Services` | 3 tarjetas de servicio con hover glow |
+| 3 | `#nosotros` | `About` | Perfil de los 2 desarrolladores |
+| 4 | `#stack` | `TechStack` | Badges del stack tecnológico |
+| 5 | `#proceso` | `Process` | 4 pasos del proceso de trabajo |
+| 6 | `#testimonios` | `Testimonials` | 3 testimonios de clientes |
+| 7 | `#contacto` | `Contact` | Bloque CTA con email y teléfonos |
+| — | `footer` | `Footer` | Logo, enlaces y copyright |
 
 ---
 
@@ -119,67 +115,60 @@ El archivo sigue el patrón **single-file HTML discipline**: todo el CSS está d
 
 ### Datos a reemplazar
 
-Busca estas cadenas en `vertexlab.html` y sustitúyelas por los datos reales:
-
-| Placeholder | Dónde | Qué poner |
+| Placeholder | Componente | Qué poner |
 |---|---|---|
-| `[Nombre Dev 1]` | Sección `#nosotros` | Nombre real del desarrollador 1 |
-| `[Nombre Dev 2]` | Sección `#nosotros` | Nombre real del desarrollador 2 |
-| `[Tu descripción personal…]` | Sección `#nosotros` | Bio breve de cada dev |
-| `hola@vertexlab.dev` | Nav, contacto y footer | Email real de contacto |
-| `[+00 000 000 000]` | Sección `#contacto` | Teléfono real |
+| `[Nombre Cliente X]` / `[Empresa]` | `Testimonials.tsx` | Datos reales de los testimonios |
+| `hola@vertexlab.dev` | `Nav` / `Contact` | Email real de contacto |
 
 ### Añadir fotos de los desarrolladores
 
-Localiza el bloque `dev-avatar` de cada dev y reemplaza el SVG placeholder por una etiqueta `<img>`:
+En `About.tsx`, dentro de cada `.dev-avatar`, sustituye la inicial por una imagen:
 
-```html
-<!-- Antes (placeholder SVG) -->
-<div class="dev-avatar">
-  <svg>...</svg>
-</div>
-
-<!-- Después (foto real) -->
-<div class="dev-avatar">
-  <img class="dev-avatar-img" src="foto-dev1.jpg" alt="Nombre Dev 1">
+```tsx
+<div className="dev-avatar">
+  <img className="dev-avatar-img" src="/foto-dario.jpg" alt="Dario Garcia" />
 </div>
 ```
+
+(Coloca las imágenes en una carpeta `public/` y referéncialas con `/nombre.jpg`.)
 
 ### Cambiar colores de marca
 
-Edita las variables CSS en el bloque `:root` al inicio del `<style>`:
-
-```css
-:root {
-  --green:  #00ff9c;   /* Color principal — cambia aquí */
-  --blue:   #58a6ff;   /* Color secundario */
-  --violet: #bc8cff;   /* Color terciario */
-}
-```
+Edita las variables CSS en el bloque `:root` al inicio de `src/index.css`.
 
 ---
 
 ## Despliegue
 
-Al ser un archivo estático, puede desplegarse en cualquier plataforma sin configuración:
+URL en producción: **https://dariogrcia.github.io/vertexlab-landing/**
 
-- **GitHub Pages** — activa Pages desde `Settings > Pages > Deploy from branch: main`
-- **Netlify** — arrastra la carpeta al dashboard de Netlify
-- **Vercel** — `vercel --prod` desde la raíz del proyecto
-- **Cualquier hosting estático** — sube `vertexlab.html` por FTP/SFTP
+La web se publica en GitHub Pages desde la rama `gh-pages`, que contiene el resultado de
+`npm run build`. Para publicar una nueva versión tras hacer cambios:
+
+```bash
+npm run build
+cd dist && touch .nojekyll
+git init && git add -A && git commit -m "deploy"
+git push -f https://github.com/dariogrcia/vertexlab-landing.git HEAD:gh-pages
+```
+
+> **Despliegue automático (opcional):** se puede añadir un workflow de GitHub Actions que
+> compile y despliegue con cada push a `main`. Requiere que el token de `gh` tenga el scope
+> `workflow` (`gh auth refresh -h github.com -s workflow`).
+
+Para desplegar en otra plataforma (Netlify, Vercel, etc.) basta con ejecutar
+`npm run build` y servir el contenido de `./dist`.
 
 ---
 
 ## Nombre de marca
 
-El nombre **VertexLab** fue seleccionado entre estas alternativas (comentadas en el HTML):
+El nombre **VertexLab** fue seleccionado entre estas alternativas:
 
 - `ByteForge` — energía + precisión técnica
 - `NexCore` — moderno y escalable
 - `CodeStack` — directo y descriptivo
 
-*'Vértice' evoca confluencia de habilidades y punto de máximo rendimiento; 'Lab' añade rigor experimental. Funciona bien en posicionamiento B2B tech.*
-
 ---
 
-&copy; 2026 VertexLab
+© 2026 VertexLab
