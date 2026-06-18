@@ -387,6 +387,16 @@
       margin-bottom: 22px;
     }
 
+    .hero-left h1 .brand-name {
+      display: block;
+      font-size: 1.5em;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--green);
+      margin-bottom: 0.15em;
+      text-shadow: 0 0 48px rgba(0, 255, 156, 0.28);
+    }
+
     .hero-left h1 .accent { color: var(--green); }
 
     .hero-subtitle {
@@ -814,6 +824,42 @@
       flex-shrink: 0;
     }
 
+    .stack-built {
+      max-width: 880px;
+      margin: 36px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid rgba(0, 255, 156, 0.1);
+      text-align: center;
+    }
+
+    .stack-built-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 0.14em;
+      opacity: 0.65;
+      margin-bottom: 16px;
+    }
+
+    .stack-built-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .sbadge-own {
+      background: rgba(0, 255, 156, 0.05);
+      border-color: rgba(0, 255, 156, 0.2);
+      color: var(--green);
+    }
+
+    .sbadge-own:hover {
+      background: rgba(0, 255, 156, 0.1);
+      border-color: rgba(0, 255, 156, 0.4);
+      color: var(--green);
+    }
+
     /* ============================================================
        PROCESS
     ============================================================ */
@@ -1234,7 +1280,8 @@
         </div>
 
         <h1>
-          Construimos el software<br>
+          <span class="brand-name">VertexLab</span>
+          construimos el software<br>
           que tu negocio<br>
           <span class="accent">necesita.</span>
         </h1>
@@ -1433,6 +1480,17 @@
       <div class="sbadge"><span class="sdot" style="background:#6cc24a"></span>Linux</div>
       <div class="sbadge"><span class="sdot" style="background:#e34c26"></span>HTML5</div>
       <div class="sbadge"><span class="sdot" style="background:#264de4"></span>CSS3</div>
+    </div>
+
+    <div class="stack-built">
+      <div class="stack-built-label">// esta web está construida con:</div>
+      <div class="stack-built-row">
+        <div class="sbadge sbadge-own"><span class="sdot" style="background:#61dafb"></span>React</div>
+        <div class="sbadge sbadge-own"><span class="sdot" style="background:#646cff"></span>Vite</div>
+        <div class="sbadge sbadge-own"><span class="sdot" style="background:#3178c6"></span>TypeScript</div>
+        <div class="sbadge sbadge-own"><span class="sdot" style="background:#38bdf8"></span>Tailwind CSS</div>
+        <div class="sbadge sbadge-own"><span class="sdot" style="background:#18181b;border:1px solid rgba(255,255,255,0.2);border-radius:50%"></span>shadcn/ui</div>
+      </div>
     </div>
   </section>
 
