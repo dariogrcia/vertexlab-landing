@@ -16,7 +16,6 @@ export default function Footer() {
           <li><a href="#nosotros">nosotros</a></li>
           <li><a href="#stack">stack</a></li>
           <li><a href="#proceso">proceso</a></li>
-          <li><a href="#testimonios">clientes</a></li>
           <li><a href="#contacto">contacto</a></li>
         </ul>
 

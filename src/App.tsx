@@ -8,7 +8,6 @@ import Services from './components/Services'
 import About from './components/About'
 import TechStack from './components/TechStack'
 import Process from './components/Process'
-import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -29,7 +28,6 @@ export default function App() {
       gsap.set('.dev-card', { opacity: 0, y: 40 })
       gsap.set('.p-step', { opacity: 0, y: 40 })
       gsap.set('.sbadge', { opacity: 0, scale: 0.85 })
-      gsap.set('.testi-card', { opacity: 0, y: 45 })
       gsap.set('.contact-inner', { opacity: 0, y: 40 })
 
       /* ===== HERO ENTRANCE (timeline) ===== */
@@ -77,15 +75,6 @@ export default function App() {
         }),
       })
 
-      /* ===== SCROLL-TRIGGERED: testimonial cards ===== */
-      ScrollTrigger.batch('.testi-card', {
-        start: 'top 85%',
-        onEnter: (batch) => gsap.to(batch, {
-          opacity: 1, y: 0,
-          duration: 0.75, stagger: 0.13, ease: 'power2.out',
-        }),
-      })
-
       /* ===== SCROLL-TRIGGERED: contact block ===== */
       ScrollTrigger.create({
         trigger: '#contacto',
@@ -127,7 +116,6 @@ export default function App() {
       <About />
       <TechStack />
       <Process />
-      <Testimonials />
       <Contact />
       <Footer />
     </>

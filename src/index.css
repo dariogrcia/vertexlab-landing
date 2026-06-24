@@ -1066,8 +1066,6 @@ footer {
 
   .process-steps::before { display: none; }
 
-  .testi-grid { grid-template-columns: repeat(2, 1fr); }
-
   .nav-links { display: none; }
   .ham       { display: flex; }
 }
@@ -1079,108 +1077,10 @@ footer {
 
   .services-grid,
   .about-grid,
-  .process-steps,
-  .testi-grid { grid-template-columns: 1fr; }
-
-  .testi-card { padding: 24px 20px; }
+  .process-steps { grid-template-columns: 1fr; }
 
   .contact-info { flex-direction: column; align-items: center; gap: 18px; }
 
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
   .f-links      { flex-wrap: wrap; justify-content: center; }
-}
-
-/* ============================================================
-   TESTIMONIALS
-============================================================ */
-#testimonios {
-  background: var(--bg-mid);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.testi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.testi-card {
-  background: var(--bg);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius-lg);
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  transition: all var(--t);
-  position: relative;
-}
-
-.testi-card:hover {
-  border-color: rgba(0,255,156,0.22);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25), 0 0 30px rgba(0,255,156,0.04);
-  transform: translateY(-4px);
-}
-
-.testi-comment {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--green);
-  letter-spacing: 0.06em;
-  opacity: 0.75;
-}
-
-.testi-stars {
-  display: flex;
-  gap: 3px;
-}
-
-.star { color: var(--orange); font-size: 13px; }
-
-.testi-text {
-  font-size: 14.5px;
-  color: var(--text-muted);
-  line-height: 1.78;
-  flex: 1;
-}
-
-.testi-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.testi-avatar {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1c2128 0%, #21262d 100%);
-  border: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-family: var(--mono);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--green);
-}
-
-.testi-name {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--off-white);
-  margin-bottom: 3px;
-}
-
-.testi-role {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.04em;
 }

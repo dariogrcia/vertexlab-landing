@@ -31,7 +31,6 @@ export default function Nav() {
           <li><a href="#nosotros">// nosotros</a></li>
           <li><a href="#stack">// stack</a></li>
           <li><a href="#proceso">// proceso</a></li>
-          <li><a href="#testimonios">// clientes</a></li>
           <li><a href="#contacto" className="nav-cta">$ hablemos</a></li>
         </ul>
 
@@ -46,7 +45,6 @@ export default function Nav() {
         <a href="#nosotros" onClick={close}>// nosotros</a>
         <a href="#stack" onClick={close}>// stack</a>
         <a href="#proceso" onClick={close}>// proceso</a>
-        <a href="#testimonios" onClick={close}>// clientes</a>
         <a href="#contacto" onClick={close}>$ hablemos</a>
       </div>
     </>

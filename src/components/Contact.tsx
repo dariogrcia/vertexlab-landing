@@ -15,8 +15,7 @@ export default function Contact() {
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </svg>
-            {/* Reemplaza con tu email real */}
-            <a href="mailto:hola@vertexlab.dev">hola@vertexlab.dev</a>
+            <a href="mailto:dariojesusgarcia6@gmail.com">dariojesusgarcia6@gmail.com</a>
           </div>
           <div className="cinfo">
             <svg viewBox="0 0 24 24" strokeWidth="1.5">
@@ -32,7 +31,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <a href="mailto:hola@vertexlab.dev" className="btn-primary" style={{ display: 'inline-flex', margin: '0 auto' }}>
+        <a href="https://wa.me/34675172371" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-flex', margin: '0 auto' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z" /></svg>
           Enviar mensaje
         </a>

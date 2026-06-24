@@ -18,9 +18,9 @@ export default function About() {
             </div>
             <div>
               <div className="dev-name">Dario Garcia</div>
-              <div className="dev-role">$ Full-Stack &amp; Configurator Engineer</div>
+              <div className="dev-role">$ Ingeniero Informático · Full-Stack &amp; IA</div>
               <p className="dev-bio">
-                Desarrollador full-stack especializado en construir aplicaciones web completas y sistemas de configuración a medida. Del frontend al backend, cada capa importa.
+                Ingeniero informático con experiencia full-stack, especializado en inteligencia artificial. Integro modelos de IA en aplicaciones web reales, del frontend al backend.
               </p>
             </div>
             <div className="dev-skills">
@@ -28,7 +28,7 @@ export default function About() {
               <span className="ds-tag">Next.js</span>
               <span className="ds-tag">TypeScript</span>
               <span className="ds-tag">Node.js</span>
-              <span className="ds-tag">Configurator</span>
+              <span className="ds-tag">IA</span>
             </div>
           </div>
 
@@ -40,9 +40,9 @@ export default function About() {
             </div>
             <div>
               <div className="dev-name">Alejandro Jorge</div>
-              <div className="dev-role">$ Full-Stack &amp; Configurator Engineer</div>
+              <div className="dev-role">$ Ingeniero Informático · Full-Stack &amp; Data</div>
               <p className="dev-bio">
-                Desarrollador full-stack con foco en arquitectura de sistemas y soluciones de configuración empresarial. Convierte procesos complejos en software claro y funcional.
+                Ingeniero informático con experiencia full-stack, especializado en datos. Diseña pipelines y modelos de datos que convierten información en decisiones.
               </p>
             </div>
             <div className="dev-skills">
@@ -50,7 +50,7 @@ export default function About() {
               <span className="ds-tag">Node.js</span>
               <span className="ds-tag">PostgreSQL</span>
               <span className="ds-tag">Docker</span>
-              <span className="ds-tag">Configurator</span>
+              <span className="ds-tag">Data</span>
             </div>
           </div>
 
